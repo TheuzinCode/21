@@ -4,28 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jogador {
-    int pontos = 0;
-    static List<Carta> nomeDaLista = new ArrayList<>();
-    boolean parou = false;
+    private int pontos = 0;
+    private List<Carta> cartas = new ArrayList<>();
+    private boolean parou = false;
+    
 
-    void receberCarta(Carta carta) {
-        nomeDaLista.add(carta); 
+    public void receberCarta(Carta carta) {
+        cartas.add(carta);
         pontos += carta.numero;
     }
 
-    void parar() {
+    public void parar() {
         this.parou = true;
     }
-
-    List<Carta> getCartas() {
-        return nomeDaLista;
+    public boolean Parou() {
+        return parou;
     }
 
-    int getPontos() {
-        return pontos;
+
+
+    
+
+    public int getPontos() {
+        return this.pontos;
+    }
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+    public List<Carta> getCartas() {
+        return this.cartas;
+    }   
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
     }
 
-    boolean parou() {
-        return this.parou;
+    public void setParou(boolean parou) {
+        this.parou = parou;
     }
+
 }

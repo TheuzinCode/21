@@ -1,49 +1,38 @@
 package com.example;
 
 public class Jogo extends Monte{
-    Monte monte = new Monte();
-    Jogador jogador = new Jogador();
-    Computador computador = new Computador();
+  Monte monte = new Monte();
+     Jogador jogador = new Jogador();
+     Computador computador = new Computador();
 
-    Jogo() {
-        monte.embaralhar(); 
+    public Jogo() {
+        monte.embaralhar();
     }
 
-    Carta distribuirCartaParaJogador(Jogador jogador) { 
-        Carta primeiraCarta = monte.virar();
+    public Carta distribuiCartaParaJogador(Jogador jogador) {
+        if (!jogador.Parou()) {
+            Carta carta = monte.virar();
+            jogador.receberCarta(carta);
+            return carta;
+        }
+        return null;
 
-        if (jogador.parou()) {
-            return null;
+
+       }
+
+
+    public boolean acabou(){
+        if(jogador.getPontos() > 21 || jogador.Parou()){
+            return true;
+        }
+        if(computador.getPontos() > 21 || computador.Parou()){
+            return true;
         }
 
-        jogador.receberCarta(primeiraCarta);
-        return primeiraCarta;
-
+    return false;
     }
 
-    boolean acabou() {
-        if (jogador.parou() || jogador.pontos >= 21) {
-            if (jogador.pontos >= 21) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    String resultado() {
-        if(acabou()) {
-            return "Você ganhô com " + jogador.pontos + "pontos";
-        }
-
-        return "Perdeu fi";
-    }
-
-    Computador getComputador() {
-        return computador;
-    }
-
-    Jogador getJogador() {
-        return jogador;
+    public String resultado(){
+        return "Resultado: " + jogador.getPontos() + " - " + computador.getPontos();   
     }
 }

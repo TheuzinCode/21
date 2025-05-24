@@ -18,13 +18,22 @@ public class PrimaryController {
     private Jogo jogo;
 
     public void turno(){
-        jogo.distribuirCartaParaJogador(jogo.jogador);
-        jogo.distribuirCartaParaJogador(jogo.computador);
-        if (jogo.acabou()) {
-            resultado.setText(jogo.resultado());
-        }
+
+
+    if (!jogo.jogador.Parou()){
+        jogo.distribuiCartaParaJogador(jogo.jogador);
         atualizar();
     }
+    if (!jogo.computador.Parou()) {
+        jogo.distribuiCartaParaJogador(jogo.computador);
+    }
+    atualizar();
+       if (jogo.acabou()) {
+        resultado.setText(jogo.resultado());
+    }
+  
+    }
+    
 
     public void atualizar(){
         pontosJogador.setText("Jogador: " + jogo.jogador.getPontos());

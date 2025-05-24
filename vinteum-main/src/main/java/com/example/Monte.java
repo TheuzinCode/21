@@ -5,23 +5,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class Monte extends Carta {
-    List<Carta> cartas = new ArrayList<>();
+    private List<Carta> cartas = new ArrayList<>();
+    
 
-    Monte() {
+    public Monte(){
         for (Naipe naipe : Naipe.values()) {
-            for (numero = 1; numero <= 13; numero++) {
-                cartas.add(new Carta(numero, naipe));
-                System.out.println("numero=" + numero + "naipe=" + naipe);
+            for (int i = 1; i <= 13; i++) {
+                this.cartas.add(new Carta(i, naipe));
             }
         }
     }
 
-    void embaralhar() {
-        Collections.shuffle(cartas);
+    public void embaralhar() {
+       Collections.shuffle(this.cartas);
     }
 
-    Carta virar() {
-        return cartas.remove(0);
+    public Carta virar(){
+        if (this.cartas.isEmpty()) {
+            return null;
+        }
+        return this.cartas.remove(0);
     }
 
 }
